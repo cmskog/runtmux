@@ -14,10 +14,8 @@
 assert builtins.isString session-name;
 assert (builtins.stringLength session-name) > 0;
 
-# We should do some checks on tmux-config
-assert builtins.traceVerbose
-       ("Type of tmux-config:" + (builtins.typeOf tmux-config))
-       true;
+# We should do some checks on tmux-config:
+# It must result in a file with the tmux configuration(if not null)
 
 assert builtins.isList session-progs;
 assert
@@ -72,7 +70,7 @@ writeTextFile {
           exec ${tmux-prog} ${
                              if tmux-config != null
                              then
-                               "-f \"${tmux-config}\""
+                               "-f '${tmux-config}'"
                              else
                                ""
                             } \
@@ -96,7 +94,7 @@ writeTextFile {
                             + (
                                if (builtins.length p) == 3
                                then
-                                 " " + (builtins.toString (builtins.elemAt p 2))
+                                 " " + (builtins.elemAt p 2)
                                else
                                  ""
                               )
