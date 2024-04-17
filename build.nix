@@ -40,7 +40,7 @@ pkgs.callPackage
     [
       "Edit"
       /Dev
-      "${pkgs.lib.meta.getExe pkgs.vim}"
+      (pkgs.lib.meta.getExe pkgs.vim)
     ]
 
     [

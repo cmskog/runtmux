@@ -32,16 +32,8 @@ assert
          ||
          (
            ((builtins.length l) == 3)
-           # Do some check on program argument
            &&
-           (
-             builtins.traceVerbose
-             (
-               "Type of element in index 3:"
-               + (builtins.typeOf (builtins.elemAt l 2))
-             )
-             true
-           )
+           (builtins.isString (builtins.elemAt l 2))
          )
        )
   )
