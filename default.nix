@@ -57,10 +57,10 @@ writeTextFile
               -o pipefail
             shopt -s shift_verbose
 
-            if ${tmux-prog} has-session -t "${session-name}" >& /dev/null
+            if ${tmux-prog} has-session -t '=${session-name}' >& /dev/null
             then
               exec ${tmux-prog} \
-                attach-session -t "${session-name}"
+                attach-session -t '=${session-name}'
             else
               exec ${tmux-prog} ${
                                   if tmux-config != null
@@ -70,7 +70,7 @@ writeTextFile
                                   else
                                     ""
                                 } \
-                new-session -s "${session-name}" \
+                new-session -s '${session-name}' \
               ${
                 builtins.toString
                 (
