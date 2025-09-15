@@ -80,7 +80,7 @@ writeTextFile
                         (builtins.map
                           (p:
                             [
-                              "new-window -d"
+                              "new-window"
 
                               (
                                 "-n "
