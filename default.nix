@@ -82,19 +82,13 @@ writeTextFile
                             [
                               "new-window"
 
-                              (
-                                "-n "
-                                + (builtins.elemAt p 0)
-                                + " -c "
-                                + (builtins.toString (builtins.elemAt p 1))
-                                + (
-                                   if (builtins.length p) == 3
-                                   then
-                                     " " + (builtins.elemAt p 2)
-                                   else
-                                     ""
-                                  )
-                              )
+                              "-n '${builtins.elemAt p 0}' -c '${builtins.toString (builtins.elemAt p 1)}'${
+                                if (builtins.length p) == 3
+                                then
+                                  " '${builtins.toString (builtins.elemAt p 2)}'"
+                                else
+                                  ""
+                                }"
 
                               "\\;"
                             ]
