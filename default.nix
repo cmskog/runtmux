@@ -76,25 +76,26 @@ writeTextFile
                 (
                   let
                     unpruned =
-                      builtins.concatLists
-                        (builtins.map
-                          (p:
-                            [
-                              "new-window"
+                      (builtins.concatMap
 
-                              "-n '${builtins.elemAt p 0}' -c '${builtins.toString (builtins.elemAt p 1)}'${
-                                if (builtins.length p) == 3
-                                then
-                                  " '${builtins.toString (builtins.elemAt p 2)}'"
-                                else
-                                  ""
-                                }"
+                        (p:
+                          [
+                            "new-window"
 
-                              "\\;"
-                            ]
-                          )
-                          session-progs
-                        );
+                            "-n '${builtins.elemAt p 0}' -c '${builtins.toString (builtins.elemAt p 1)}'${
+                              if (builtins.length p) == 3
+                              then
+                                " '${builtins.toString (builtins.elemAt p 2)}'"
+                              else
+                                ""
+                              }"
+
+                            "\\;"
+                          ]
+                        )
+
+                        session-progs
+                      );
                   in
                     lib.lists.drop 1 (lib.lists.take ((builtins.length unpruned) - 1) unpruned)
                 )
